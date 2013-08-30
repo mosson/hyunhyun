@@ -5,12 +5,18 @@ jQuery ->
     source = $(target).val()
     @$display = $(target).closest(".special-text-input").find(".display")
 
-    _.each( source.split(""), (char, index) =>
+    str = source.split("")
+
+    if str.length <= 0
+      @$display.find("> span").html("")
+    else
+      @$display.find("> span:gt(#{str.length-1})").remove()
+
+    _.each( str, (char, index) =>
       char = "&nbsp;" if /\s/.test char
 
       $span = @$display.find("> span").eq(index)
       if $span.length > 0
-        console.log $span.text(), char
         if $span.text() == char
           return
         else
