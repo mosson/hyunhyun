@@ -1,7 +1,12 @@
 @import "compass";
 @import "compass/reset";
 
-$mimic-color: #fff;
+html, body {
+  height: 100%;
+  @include background-image(radial-gradient(#205983, #0A2742));
+  background-repeat: no-repeat;
+  background-size: contain;
+}
 
 body {
   padding: 30px;
@@ -24,12 +29,21 @@ $line-height: 1.5;
 $min-height: $font-size * $line-height;
 
 @mixin text-style {
+  font-family: 'Lobster', serif;
   font-size: $font-size;
   font-weight: bold;
-  font-family: sans-serif;
   line-height: $line-height;
   letter-spacing: 1;
   vertical-align: baseline;
+
+  color: #fff;
+  @include text-shadow(0px 2px 4px #000);
+}
+
+h1 {
+  @include text-style;
+  font-size: 20px;
+  text-align: center;
 }
 
 @mixin keyframes($name){
@@ -50,7 +64,7 @@ $min-height: $font-size * $line-height;
 @include keyframes(move) {
   from {
     @include opacity(0);
-    @include transform( translate(100px, 0px) scale(10) rotate(90deg) );
+    @include transform( translate(100px, 0px) scale(3) rotate(90deg) );
   }
   to {
     @include opacity(1);
@@ -63,9 +77,9 @@ $min-height: $font-size * $line-height;
   display: block; /* 横目いっぱい: 親要素に幅を譲る */
 
   /* テキストフィールドっぽいスタイルにする */
-  border: 1px solid #999;
-  background: $mimic-color;
-  @include box-shadow(rgba(0, 0, 0, .4) 1px 1px 3px);
+  background: #19466a;
+  @include box-shadow(rgba(255, 255, 255, .4) 0px 0px 3px);
+  @include border-radius(6px);
 
   > .inner {
     position: relative;
@@ -74,7 +88,7 @@ $min-height: $font-size * $line-height;
     height: auto;
 
     min-height: $min-height; /* 文字なないときに一文字分の高さをとる */
-    margin: 5px;
+    margin: 30px;
   }
 
   input, .display {
@@ -86,6 +100,7 @@ $min-height: $font-size * $line-height;
     height: 100%;
     margin: 0;
     padding: 0;
+    background: transparent;
   }
 
   input {
@@ -94,14 +109,16 @@ $min-height: $font-size * $line-height;
     @include box-shadow(none);
     outline: none;
     border: none;
-
-    //color: $mimic-color;
-    color: red;
+    z-index: 1;
 
     @include text-style;
+
+    color: transparent;
+
   }
 
   .display {
+    z-index: 2;
     font-size: 0px; /* white-spaceの幅を消す */
     @include unselectable;
   }
@@ -109,6 +126,7 @@ $min-height: $font-size * $line-height;
   .display > span {
     @include inline-block; /* アニメーションさせたい */
     @include text-style;
+    overflow: visible;
 
     /* 選択負荷にする */
     @include unselectable;

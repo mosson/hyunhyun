@@ -1,3 +1,6 @@
+#=require jquery/jquery.min
+#=require jquery/jquery-migrate.min
+#=require underscore/underscore-min
 #= require_tree .
 
 jQuery ->

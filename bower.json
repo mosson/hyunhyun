@@ -1,0 +1,8 @@
+{
+  "name": "hyunhyun",
+  "version": "0.0.1",
+  "dependencies": {
+    "jquery": "x.x.x",
+    "underscore": "x.x.x"
+  }
+}

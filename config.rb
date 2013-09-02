@@ -45,6 +45,10 @@
 #   end
 # end
 
+after_configuration do
+    sprockets.append_path "#{root}/vendors/"
+end
+
 set :css_dir, 'stylesheets'
 
 set :js_dir, 'javascripts'
